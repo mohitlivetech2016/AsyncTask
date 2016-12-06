@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AsyncTask</string>
+    <string name="title_activity_main_service">MainServiceActivity</string>
 </resources>
