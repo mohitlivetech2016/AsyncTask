@@ -1,5 +1,6 @@
 package sharedpreferences.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.app.asynctask.R;
 
@@ -18,7 +20,7 @@ import java.io.File;
 
 public class MainSharePrefencesActivity extends AppCompatActivity {
 
-    private static final String MY_PREFS_NAME = "MyPreferences";
+    private static final String defaultVal = "DEFAULT";
     private EditText mEtMailId,mEtPassword;
     private Button mBtnLogin,mBtnReset,mBtnRegister;
 
@@ -29,7 +31,7 @@ public class MainSharePrefencesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mEtMailId=(EditText)findViewById(R.id.idEtRegisterActivityMailId);
+        mEtMailId=(EditText)findViewById(R.id.idEvMainAvtivityMailId);
         mEtPassword=(EditText)findViewById(R.id.idEtMainActivityPassword);
         mBtnLogin=(Button)findViewById(R.id.idBtnLogin);
         mBtnRegister=(Button)findViewById(R.id.idBtnRegister);
@@ -54,15 +56,6 @@ public class MainSharePrefencesActivity extends AppCompatActivity {
     protected void onStart() {
 
 
-        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        String restoredText = prefs.getString("text", null);
-        if (restoredText != null) {
-            String mail = prefs.getString("mailId", "No name defined");
-            String pass = prefs.getString("password", "No Password");
-
-
-        }
-        System.out.print(prefs.getString("mailId","default value"));
 
         super.onStart();
     }
@@ -72,6 +65,32 @@ public class MainSharePrefencesActivity extends AppCompatActivity {
 
 
         //contains(String mailId)
+        SharedPreferences prefs = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        //String restoredText = prefs.getString("UserInfo", null);
+        // if (restoredText != null) {
+        String mail = prefs.getString("mailId", defaultVal);
+        String pass = prefs.getString("password", defaultVal);
+
+        if(mail.equals(defaultVal) || pass.equals(defaultVal))
+        {
+
+            Toast.makeText(this,"Data not load",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+
+            mEtMailId.setText(mail);
+            mEtPassword.setText(pass);
+
+
+            Toast.makeText(this,"Data Found",Toast.LENGTH_LONG).show();
+        }
+
+
+
+
+        //}
+        System.out.print(mail+"................................................................."+pass);
 
 
         super.onResume();

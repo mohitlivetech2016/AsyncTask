@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         mEtPassword=(EditText)findViewById(R.id.idEtRegisterActivityPassword);
         mBtnSubmit=(Button)findViewById(R.id.idBtnRegisterPageSubmit);
 
-        sharedPreferences =getSharedPreferences(MyPreferences, Context.MODE_PRIVATE);
+
 
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,15 +46,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 String mail=  mEtMailId.getText().toString();
                 String pass=mEtPassword.getText().toString();
-
+                sharedPreferences =getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor= sharedPreferences.edit();
                 editor.putString("mailId",mail);
                 editor.putString("password",pass);
+                //editor.apply();
                 editor.commit();
+               // System.out.print(editor);
 
-                System.out.print(sharedPreferences.getString("mailId","default value"));
-
-                Toast.makeText(LoginActivity.this,"Thanks",Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,"Thanks your data had summited",Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(LoginActivity.this,MainSharePrefencesActivity.class);
                 startActivity(intent);
 
