@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AsyncTask</string>
     <string name="title_activity_main_service">MainServiceActivity</string>
+    <string name="title_activity_main_share_prefences">MainSharePrefencesActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login_success_full">LoginSuccessFull</string>
 </resources>

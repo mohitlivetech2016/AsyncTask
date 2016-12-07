@@ -35,7 +35,7 @@ public class MyIntentService extends IntentService {
             {
 
                 try {
-                    wait(500);
+                    wait(300);
                     count++;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -51,7 +51,6 @@ public class MyIntentService extends IntentService {
 
     @Override
     public void onDestroy() {
-
 
         super.onDestroy();
         Toast.makeText(this,"Ondestroy Called",Toast.LENGTH_SHORT).show();
